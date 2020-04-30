@@ -4,6 +4,8 @@ import {
   TouchableOpacity,
   FlatList,
   SafeAreaView,
+  Linking,
+  Platform,
 } from 'react-native';
 import {
   Header,
@@ -21,33 +23,144 @@ import {
 import Doctor from 'react-native-vector-icons/Fontisto';
 const data = {
   FlatListItems: [
-    {id: '1', name: 'Dr. Hafiz Mudassir Riaz', type: 'Physical Therapist'},
-    {id: '2', name: 'Dr. Nosheen Ahmad', type: 'Radiologist'},
-    {id: '3', name: 'Dr. Anaya Ch', type: 'Medical specialist'},
-    {id: '4', name: 'Dr. Usman Ahmad', type: 'Anaethetist'},
-    {id: '5', name: 'Dr. M.Masood Alam', type: 'Anaethetist'},
-    {id: '7', name: 'Dr. M. Aasam Massom', type: 'Anaethetist'},
-    {id: '6', name: 'Dr. Ali Hassan', type: 'Orthopedic Surgeon'},
-    {id: '8', name: 'Dr. Dawood Rana', type: 'Orthopedic Surgeon'},
-    {id: '9', name: 'Dr. Bilal Javaid', type: 'Nephrologist'},
-    {id: '10', name: 'Dr. Nida Rafiq', type: 'General Physician'},
-    {id: '11', name: 'Dr. Ahtesham Zafar', type: 'Internal Medicine'},
-    {id: '12', name: 'Dr. Khurram Jah Zafar', type: 'Dental Surgeon'},
-    {id: '13', name: 'Dr. Waqas Ashraf', type: 'Dental Surgeon'},
-    {id: '14', name: 'Dr. Basharat Manzoor', type: 'Orthopedist'},
-    {id: '15', name: 'Dr. M Adeel Alam Shah', type: 'Fertility Specialist'},
-    {id: '16', name: 'Dr. Mazhar Mahmood', type: 'Orthopedist'},
-    {id: '17', name: 'Dr. Noor ul Ain', type: 'Cardiologist'},
-    {id: '18', name: 'Dr. Atika Wahla', type: 'Dentist'},
-    {id: '19', name: 'Dr. Sohail Majeed', type: 'Neurologist'},
-    {id: '20', name: 'Dr. Basharat Manzoor', type: 'Orthopedist'},
-    {id: '21', name: 'Prof. M Akmal Hussain', type: 'Orthopedist'},
+    {
+      id: '1',
+      name: 'Dr. Hafiz Mudassir Riaz',
+      type: 'Physical Therapist',
+      phone: '03001234501',
+    },
+    {
+      id: '2',
+      name: 'Dr. Nosheen Ahmad',
+      type: 'Radiologist',
+      phone: '03001234502',
+    },
+    {
+      id: '3',
+      name: 'Dr. Anaya Ch',
+      type: 'Medical specialist',
+      phone: '03001234503',
+    },
+    {
+      id: '4',
+      name: 'Dr. Usman Ahmad',
+      type: 'Anaethetist',
+      phone: '03001234504',
+    },
+    {
+      id: '5',
+      name: 'Dr. M.Masood Alam',
+      type: 'Anaethetist',
+      phone: '03001234505',
+    },
+    {
+      id: '7',
+      name: 'Dr. M. Aasam Massom',
+      type: 'Anaethetist',
+      phone: '03001234506',
+    },
+    {
+      id: '6',
+      name: 'Dr. Ali Hassan',
+      type: 'Orthopedic Surgeon',
+      phone: '03001234507',
+    },
+    {
+      id: '8',
+      name: 'Dr. Dawood Rana',
+      type: 'Orthopedic Surgeon',
+      phone: '03001234508',
+    },
+    {
+      id: '9',
+      name: 'Dr. Bilal Javaid',
+      type: 'Nephrologist',
+      phone: '03001234509',
+    },
+    {
+      id: '10',
+      name: 'Dr. Nida Rafiq',
+      type: 'General Physician',
+      phone: '03001234510',
+    },
+    {
+      id: '11',
+      name: 'Dr. Ahtesham Zafar',
+      type: 'Internal Medicine',
+      phone: '03001234511',
+    },
+    {
+      id: '12',
+      name: 'Dr. Khurram Jah Zafar',
+      type: 'Dental Surgeon',
+      phone: '03001234512',
+    },
+    {
+      id: '13',
+      name: 'Dr. Waqas Ashraf',
+      type: 'Dental Surgeon',
+      phone: '03001234513',
+    },
+    {
+      id: '14',
+      name: 'Dr. Basharat Manzoor',
+      type: 'Orthopedist',
+      phone: '03001234514',
+    },
+    {
+      id: '15',
+      name: 'Dr. M Adeel Alam Shah',
+      type: 'Fertility Specialist',
+      phone: '03001234515',
+    },
+    {
+      id: '16',
+      name: 'Dr. Mazhar Mahmood',
+      type: 'Orthopedist',
+      phone: '03001234516',
+    },
+    {
+      id: '17',
+      name: 'Dr. Noor ul Ain',
+      type: 'Cardiologist',
+      phone: '03001234517',
+    },
+    {id: '18', name: 'Dr. Atika Wahla', type: 'Dentist', phone: '03001234567'},
+    {
+      id: '19',
+      name: 'Dr. Sohail Majeed',
+      type: 'Neurologist',
+      phone: '03001234518',
+    },
+    {
+      id: '20',
+      name: 'Dr. Basharat Manzoor',
+      type: 'Orthopedist',
+      phone: '03001234519',
+    },
+    {
+      id: '21',
+      name: 'Prof. M Akmal Hussain',
+      type: 'Orthopedist',
+      phone: '03001234520',
+    },
     // {id: '14', name: 'Dr. ', type: ''},
     // {id: '14', name: 'Dr. ', type: ''},
   ],
 };
 
 class DoctorsDetails extends Component {
+  // makeCall = phone => {
+  //   let phoneNumber = phone;
+
+  //   if (Platform.OS === 'android') {
+  //     phoneNumber = `tel:${phoneNumber}`;
+  //   } else {
+  //     phoneNumber = `telprompt:${phoneNumber}`;
+  //   }
+  //   Linking.openURL(phoneNumber);
+  // };
+
   FlatListItemSeparator = () => {
     return (
       //Item Separator
@@ -61,13 +174,13 @@ class DoctorsDetails extends Component {
       <SafeAreaView style={styles.container}>
         <Header transparent style={styles.header}>
           <Left>
-            <TouchableOpacity>
-              <Button
-                transparent
-                onPress={() => navigate('Home', {name: 'Jane'})}>
-                <Icon name="arrow-back" style={styles.icon} />
-              </Button>
-            </TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => Linking.openURL(item.)}> */}
+            <Button
+              transparent
+              onPress={() => navigate('Home', {name: 'Jane'})}>
+              <Icon name="arrow-back" style={styles.icon} />
+            </Button>
+            {/* </TouchableOpacity> */}
           </Left>
           <Body style={styles.title}>
             <Title style={styles.title}> Doctors Details </Title>
@@ -98,10 +211,15 @@ class DoctorsDetails extends Component {
                     </Text>
                   </Body>
                   <Right style={styles.right}>
-                    <Text style={styles.text1} note>
-                      0300 1234567
-                    </Text>
-                    <Doctor color="green" name="phone" size={14} />
+                    <TouchableOpacity
+                      onPress={(a = item.phone) =>
+                        Linking.openURL(`tel:${item.phone}`)
+                      }>
+                      {/* <Text style={styles.text1} note>
+                        {item.phone}
+                      </Text> */}
+                      <Doctor color="green" name="phone" size={25} />
+                    </TouchableOpacity>
                   </Right>
                 </ListItem>
               </List>
@@ -132,7 +250,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   name: {
-    fontSize: 13,
+    fontSize: 16,
+    // paddingLeft: 55,
   },
   right: {
     flexDirection: 'row',

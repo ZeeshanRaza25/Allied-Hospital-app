@@ -1,11 +1,23 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Linking, Platform} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
 import FaxIcon from 'react-native-vector-icons/FontAwesome';
 import {Header, Left, Body, Button, Icon, Title, View, Text} from 'native-base';
 
 export default class Call extends Component {
+  makeCall = () => {
+    let phoneNumber = '';
+
+    if (Platform.OS === 'android') {
+      phoneNumber = 'tel:${1234567890}';
+    } else {
+      phoneNumber = 'telprompt:${1234567890}';
+    }
+
+    Linking.openURL(phoneNumber);
+  };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -25,26 +37,34 @@ export default class Call extends Component {
           </Body>
         </Header>
         <View style={styles.itemView}>
-          <Icons
-            color="#2AA6B6"
-            style={styles.icons}
-            name="md-call"
-            size={40}
-          />
-          <Text style={styles.text}> 041-9210080</Text>
+          <TouchableOpacity
+            style={styles.TouchableOpacityStyle}
+            onPress={this.makeCall}>
+            <Icons
+              color="#2AA6B6"
+              style={styles.icons}
+              name="md-call"
+              size={40}
+            />
+            <Text style={styles.text}> 041-9210080</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.itemView}>
           <FaxIcon color="#2AA6B6" style={styles.icons} name="fax" size={30} />
           <Text style={styles.text}> 041-9210080</Text>
         </View>
         <View style={styles.itemView}>
-          <AmbulanceIcon
-            style={styles.icons1}
-            color="#2AA6B6"
-            name="email"
-            size={35}
-          />
-          <Text style={styles.text}>info@pmc.edu.pk</Text>
+          <TouchableOpacity
+            onPress={() => Linking.openURL('mailto:info@pmc.edu.pk')}
+            style={styles.TouchableOpacityStyle}>
+            <AmbulanceIcon
+              style={styles.icons1}
+              color="#2AA6B6"
+              name="email"
+              size={35}
+            />
+            <Text style={styles.text}>info@pmc.edu.pk</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -54,6 +74,15 @@ export default class Call extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+  },
+  TouchableOpacityStyle: {
+    flexDirection: 'row',
+    marginVertical: '1%',
+    height: '100%',
+    // borderBottomColor: '#000000',
+    // borderBottomWidth: 1,
+    width: '98%',
     alignItems: 'center',
   },
   header: {

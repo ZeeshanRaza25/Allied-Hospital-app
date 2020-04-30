@@ -1,10 +1,33 @@
 import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Linking, Platform} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
 import {Header, Left, Body, Button, Icon, Title, View, Text} from 'native-base';
 
 export default class Emergency extends Component {
+  makeCall = () => {
+    let phoneNumber = '';
+
+    if (Platform.OS === 'android') {
+      phoneNumber = 'tel:${1234567890}';
+    } else {
+      phoneNumber = 'telprompt:${1234567890}';
+    }
+
+    Linking.openURL(phoneNumber);
+  };
+  makeCallAmbulance = () => {
+    let phoneNumber = '';
+
+    if (Platform.OS === 'android') {
+      phoneNumber = 'tel:${1122}';
+    } else {
+      phoneNumber = 'telprompt:${1122}';
+    }
+
+    Linking.openURL(phoneNumber);
+  };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -24,22 +47,30 @@ export default class Emergency extends Component {
           </Body>
         </Header>
         <View style={styles.itemView}>
-          <Icons
-            color="#2AA6B6"
-            style={styles.icons}
-            name="md-call"
-            size={40}
-          />
-          <Text style={styles.text}> Emergency Call </Text>
+          <TouchableOpacity
+            style={styles.TouchableOpacityStyle}
+            onPress={this.makeCall}>
+            <Icons
+              color="#2AA6B6"
+              style={styles.icons}
+              name="md-call"
+              size={40}
+            />
+            <Text style={styles.text}> Emergency Call </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.itemView}>
-          <AmbulanceIcon
-            style={styles.icons1}
-            color="red"
-            name="ambulance"
-            size={30}
-          />
-          <Text style={styles.text}> Ambulance Call </Text>
+          <TouchableOpacity
+            style={styles.TouchableOpacityStyle}
+            onPress={this.makeCallAmbulance}>
+            <AmbulanceIcon
+              style={styles.icons1}
+              color="red"
+              name="ambulance"
+              size={30}
+            />
+            <Text style={styles.text}> Ambulance Call </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -49,6 +80,15 @@ export default class Emergency extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+  },
+  TouchableOpacityStyle: {
+    flexDirection: 'row',
+    marginVertical: '1%',
+    height: '100%',
+    // borderBottomColor: '#000000',
+    // borderBottomWidth: 1,
+    width: '98%',
     alignItems: 'center',
   },
   header: {

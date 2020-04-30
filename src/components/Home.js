@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, ImageBackground} from 'react-native';
+import {View, Image, StyleSheet, ImageBackground, Linking} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
 import SplashScreen from 'react-native-splash-screen';
