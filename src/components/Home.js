@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, ImageBackground, Linking} from 'react-native';
+import {View, Image, StyleSheet, ImageBackground} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import SplashScreen from 'react-native-splash-screen';
 import {
   Header,
@@ -83,13 +84,13 @@ class Home extends Component {
               </View>
               <View style={styles.touchableOpacityRight}>
                 <TouchableOpacity
-                  onPress={() => navigate('Icu', {name: 'Jane'})}>
+                  onPress={() => navigate('BloodHome', {name: 'Jane'})}>
                   <AmbulanceIcon
                     style={styles.IconStyle1}
-                    name="bed-patient"
+                    name="blood-drop"
                     size={40}
                   />
-                  <Text style={styles.cardtext}> CCU </Text>
+                  <Text style={styles.cardtext}> Blood Bank </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -107,13 +108,13 @@ class Home extends Component {
               </View>
               <View style={styles.touchableOpacityRight}>
                 <TouchableOpacity
-                  onPress={() => navigate('Appa', {name: 'Jane'})}>
-                  <Icons
+                  onPress={() => navigate('Login', {name: 'Jane'})}>
+                  <SimpleLineIcons
                     style={styles.IconStyle1}
-                    name="directions"
+                    name="login"
                     size={40}
                   />
-                  <Text style={styles.cardtext}> Others </Text>
+                  <Text style={styles.cardtext}> Login </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -156,8 +157,12 @@ const styles = StyleSheet.create({
   },
   IconStyle1: {
     color: '#2AA6B6',
-    alignItems: 'center',
-    margin: 13,
+    // alignItems: 'center',
+    margin: 11,
+    alignSelf: 'center',
+    justifyContent: 'center',
+
+    // fontSize:15,
   },
   backgroundImage: {
     // flex: 10,
@@ -258,7 +263,7 @@ const styles = StyleSheet.create({
     marginTop: '7%',
   },
   cardtext: {
-    // fontSize: 12,
+    fontSize: 14,
     // backgroundColor: '#000000',
     alignItems: 'center',
     justifyContent: 'center',

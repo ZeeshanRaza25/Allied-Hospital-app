@@ -5,7 +5,6 @@ import {
   FlatList,
   SafeAreaView,
   Linking,
-  Platform,
 } from 'react-native';
 import {
   Header,

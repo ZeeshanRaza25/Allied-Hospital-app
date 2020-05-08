@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {Header, Left, Body, Button, Icon, Title, View} from 'native-base';
+import {
+  Header,
+  Left,
+  Body,
+  Button,
+  Icon,
+  Title,
+  View,
+  Right,
+} from 'native-base';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 
 export default class Opd extends Component {
   render() {
@@ -44,6 +54,15 @@ export default class Opd extends Component {
           <Body style={styles.title}>
             <Title style={styles.title}> Opd </Title>
           </Body>
+          <Right>
+            <Icons
+              onPress={() => navigate('OpdHelp', {name: 'Jane'})}
+              style={styles.helpIcon}
+              name="live-help"
+              size={30}
+            />
+            {/* <Text>Help</Text> */}
+          </Right>
         </Header>
         <FlatGrid
           itemDimension={130}
@@ -69,10 +88,15 @@ const styles = StyleSheet.create({
     flex: 1,
     // alignItems: 'center',
   },
+  helpIcon: {
+    marginRight: 10,
+  },
   header: {
     color: '#000000',
     // flex: 2,
     width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icon: {
     color: '#000000',
@@ -89,7 +113,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'black',
     // alignItems: 'center',
-    marginLeft: '5%',
+    marginLeft: '23%',
   },
   gridView: {
     marginTop: 10,
