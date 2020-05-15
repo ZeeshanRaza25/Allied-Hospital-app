@@ -11,7 +11,7 @@ import {
   View,
   Right,
 } from 'native-base';
-import Icons from 'react-native-vector-icons/MaterialIcons';
+import Icons from 'react-native-vector-icons/Fontisto';
 
 export default class Opd extends Component {
   render() {
@@ -80,7 +80,11 @@ export default class Opd extends Component {
           // fixed
           spacing={10}
           renderItem={({item, index}) => (
-            <View style={[styles.itemContainer, {backgroundColor: item.code}]}>
+            <View
+              style={[
+                styles.itemContainer, //, {backgroundColor: item.code}
+              ]}>
+              <Icons style={styles.icon} name="doctor" size={75} />
               <Text style={styles.itemName}>{item.name}</Text>
               <Text style={styles.itemCode}>Room # {item.room}</Text>
             </View>
@@ -107,7 +111,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    color: '#000000',
+    color: 'blue',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginBottom: 50,
   },
   scrollView: {
     backgroundColor: 'pink',
@@ -132,17 +140,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     height: 200,
+    backgroundColor: 'transparent',
+    borderColor: '#880045',
+    borderWidth: 1,
   },
   itemName: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000000',
     fontWeight: '600',
     alignSelf: 'center',
   },
   itemCode: {
     fontWeight: '600',
     fontSize: 12,
-    color: '#fff',
+    color: '#000000',
     alignSelf: 'center',
   },
 });

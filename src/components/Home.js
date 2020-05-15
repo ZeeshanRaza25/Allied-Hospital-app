@@ -28,7 +28,7 @@ class Home extends Component {
     return (
       <Container style={styles.container}>
         <ImageBackground
-          source={require('../../assets/backgroung.png')}
+          // source={require('../../assets/backgroung.png')}
           style={styles.backgroundImage}>
           <View style={styles.imageContainer}>
             <Image
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: '100%',
     height: '100%',
+    backgroundColor: 'transparent',
   },
   searchtext: {
     color: '#2AA6B6',
@@ -223,7 +224,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: 'solid',
     elevation: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
     alignItems: 'center',
   },
   touchableOpacityRight: {
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: 'solid',
     elevation: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
     alignItems: 'center',
   },
   IconStyle: {
