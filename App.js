@@ -17,27 +17,11 @@ import BloodHome from './src/bloodbank/Screens/Home/Home';
 import PostDetail from './src/bloodbank/Screens/DetailPost/DetailPost';
 import SignUp from './src/components/SignUp';
 
-const MainNavigator = createStackNavigator({
-  Home: {screen: Home, navigationOptions: {headerShown: false}},
-  Icu: {screen: Icu, navigationOptions: {headerShown: false}},
-  Opd: {screen: Opd, navigationOptions: {headerShown: false}},
-  Emergency: {screen: Emergency, navigationOptions: {headerShown: false}},
-  About: {screen: About, navigationOptions: {headerShown: false}},
+const AfterSignin = createStackNavigator({
   Blood: {screen: Blood, navigationOptions: {headerShown: false}},
-  DoctorsDetails: {
-    screen: DoctorsDetails,
-    navigationOptions: {headerShown: false},
-  },
-  Call: {screen: Call, navigationOptions: {headerShown: false}},
-  OpdHelp: {screen: OpdHelp, navigationOptions: {headerShown: false}},
   BloodMain: {screen: BloodMain, navigationOptions: {headerShown: false}},
-  Login: {screen: Login, navigationOptions: {headerShown: false}},
   BloodHome: {
     screen: BloodHome,
-    navigationOptions: {headerShown: false},
-  },
-  SignUp: {
-    screen: SignUp,
     navigationOptions: {headerShown: false},
   },
   PostDetail: {
@@ -46,6 +30,37 @@ const MainNavigator = createStackNavigator({
   },
 });
 
-const MyApp = createAppContainer(MainNavigator);
+const BeforeSignin = createStackNavigator({
+  Home: {screen: Home, navigationOptions: {headerShown: false}},
+  Icu: {screen: Icu, navigationOptions: {headerShown: false}},
+  Opd: {screen: Opd, navigationOptions: {headerShown: false}},
+  Emergency: {screen: Emergency, navigationOptions: {headerShown: false}},
+  About: {screen: About, navigationOptions: {headerShown: false}},
+  DoctorsDetails: {
+    screen: DoctorsDetails,
+    navigationOptions: {headerShown: false},
+  },
+  Call: {screen: Call, navigationOptions: {headerShown: false}},
+  OpdHelp: {screen: OpdHelp, navigationOptions: {headerShown: false}},
+
+  Login: {screen: Login, navigationOptions: {headerShown: false}},
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {headerShown: false},
+  },
+});
+
+const AppNavigator = createStackNavigator(
+  {
+    Auth: BeforeSignin,
+    App: AfterSignin,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Auth',
+  },
+);
+
+const MyApp = createAppContainer(AppNavigator);
 
 export default MyApp;

@@ -69,32 +69,32 @@ export default class About extends Component {
           <View style={styles.view1}>
             <Text style={styles.heading}>Contact</Text>
             <View style={styles.contactView}>
-              <Ionic style={styles.IconStyle} name="md-call" size={40} />
+              <Ionic style={styles.IconStyle} name="md-call" size={25} />
               <Text style={styles.textStyle}> (041) 9210082</Text>
             </View>
             <View style={styles.contactView}>
-              <Icons style={styles.IconStyle} name="email" size={40} />
+              <Icons style={styles.IconStyle} name="email" size={25} />
               <Text style={styles.textStyle}>allied@gmail.com</Text>
             </View>
             <View style={styles.contactView}>
-              <Web style={styles.IconStyle} name="web" size={40} />
+              <Web style={styles.IconStyle} name="web" size={25} />
               <Text style={styles.textStyle}>www.ahf.gop.pk</Text>
             </View>
             <View style={styles.contactView}>
               <LocationIcon
                 style={styles.IconStyle}
                 name="location"
-                size={30}
+                size={25}
               />
               <Text style={styles.textStyle}>
                 Jail Road Faisalabad,{'\n'},Pakistan
               </Text>
-              {/* <TouchableOpacity style={{width: null,height: null}} onPress={}>
-                  <Text>{'\n'}see on Google map</Text>
-                </TouchableOpacity> */}
+              {/* <Text> {'\n'} </Text> */}
+              {/* <TouchableOpacity style={{width: null,height: null}} onPress={}> */}
+              {/* <Text>{'\n'}see on Google map</Text> */}
             </View>
             <View style={styles.contactView}>
-              <Icons style={styles.IconStyle} name="facebook" size={40} />
+              <Icons style={styles.IconStyle} name="facebook" size={25} />
               <Text style={styles.textStyle1}>Join us on Fb</Text>
             </View>
           </View>
@@ -119,20 +119,22 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: '5%',
-    marginBottom: '3%',
-    // backgroundColor: '#fff',
-    paddingTop: '3%',
+    fontSize: 14,
+    // paddingBottom: '5%',
+    // marginBottom: '3%',
+    // backgroundColor: '#000000',
+    // paddingTop: '3%',
   },
   textStyle1: {
     alignSelf: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     paddingBottom: '5%',
-    marginBottom: '10%',
-    paddingTop: '3%',
-    marginLeft: '5%',
+    // marginVertical: '10%',
+    paddingVertical: '3%',
+    flexDirection: 'row',
+    // marginLeft: '5%',
   },
   view1: {
     marginTop: '10%',
@@ -156,10 +158,11 @@ const styles = StyleSheet.create({
   },
   contactView: {
     flexDirection: 'row',
-    // alignItems: 'center',
-    // alignContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
     // alignSelf: 'center',
     justifyContent: 'flex-start',
+    marginVertical: 6,
   },
   heading: {
     alignSelf: 'center',
@@ -168,10 +171,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   IconStyle: {
-    marginHorizontal: 35,
+    marginHorizontal: 30,
     color: '#2AA6B6',
     // flexDirection: 'row',
     // flexWrap: 'wrap',
+    alignSelf: 'center',
   },
   text: {
     fontSize: 14,
