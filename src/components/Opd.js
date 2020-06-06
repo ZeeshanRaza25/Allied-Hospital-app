@@ -10,41 +10,183 @@ import {
   Title,
   View,
   Right,
+  Image,
 } from 'native-base';
-import Icons from 'react-native-vector-icons/Fontisto';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+import DoctorIcon from 'react-native-vector-icons/Fontisto';
 
-export default class Opd extends Component {
+class Opd extends Component {
   render() {
     const {navigate} = this.props.navigation;
     const items = [
-      {name: 'Child Specialist', code: '#1abc9c', room: 11},
-      {name: 'Diabetist', code: '#2ecc71', room: 12},
-      {name: 'Fertility Specialist', code: '#3498db', room: 13},
-      {name: 'General Physician', code: '#9b59b6', room: 14},
-      {name: 'Neurologist', code: '#34495e', room: 15},
-      {name: 'Nephrologist', code: '#16a085', room: 16},
-      {name: 'Neuro Surgen', code: '#27ae60', room: 17},
-      {name: 'Orthopedist', code: '#2980b9', room: 18},
-      {name: 'Urologist', code: '#8e44ad', room: 19},
-      {name: 'ENT Specialist', code: '#2c3e50', room: 20},
-      {name: 'Chest Specialist', code: '#f1c40f', room: 21},
-      {name: 'Psychiatrist', code: '#e67e22', room: 22},
-      {name: 'Gyneocolist', code: '#e74c3c', room: 23},
-      {name: 'Eye Specialist', code: '#ecf0f1', room: 24},
-      {name: 'Dermatology', code: '#95a5a6', room: 25},
-      {name: 'Skin Specialist', code: '#f39c12', room: 26},
-      {name: 'Radiologist', code: '#d35400', room: 27},
-      {name: 'Physical Therapist', code: '#c0392b', room: 28},
-      {name: 'Medical Specialist', code: '#bdc3c7', room: 29},
-      {name: 'Internal Specialist', code: '#7f8c8d', room: 30},
-      {name: 'Periodonotology', code: '#1abc9c', room: 32},
-      {name: 'Presthodontics', code: '#2ecc71', room: 33},
-      {name: 'Orthodonotics', code: '#3498db', room: 34},
-      {name: 'Oral Surgery', code: '#9b59b6', room: 35},
-      {name: 'Opertaor Dentisty', code: '#34495e', room: 36},
-      {name: 'Oral Pathology', code: '#16a085', room: 37},
-      {name: 'Oral Medicine', code: '#27ae60', room: 38},
-      {name: 'Oral Morphology', code: '#2980b9', room: 39},
+      {
+        name: 'Child Specialist',
+        code: '#1abc9c',
+        room: 11,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Diabetist',
+        code: '#2ecc71',
+        room: 12,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Fertility Specialist',
+        code: '#3498db',
+        room: 13,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'General Physician',
+        code: '#9b59b6',
+        room: 14,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Neurologist',
+        code: '#34495e',
+        room: 15,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Nephrologist',
+        code: '#16a085',
+        room: 16,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Neuro Surgen',
+        code: '#27ae60',
+        room: 17,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Orthopedist',
+        code: '#2980b9',
+        room: 18,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Urologist',
+        code: '#8e44ad',
+        room: 19,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'ENT Specialist',
+        code: '#2c3e50',
+        room: 20,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Chest Specialist',
+        code: '#f1c40f',
+        room: 21,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Psychiatrist',
+        code: '#e67e22',
+        room: 22,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Gyneocolist',
+        code: '#e74c3c',
+        room: 23,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Eye Specialist',
+        code: '#ecf0f1',
+        room: 24,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Dermatology',
+        code: '#95a5a6',
+        room: 25,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Skin Specialist',
+        code: '#f39c12',
+        room: 26,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Radiologist',
+        code: '#d35400',
+        room: 27,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Physical Therapist',
+        code: '#c0392b',
+        room: 28,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Medical Specialist',
+        code: '#bdc3c7',
+        room: 29,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Internal Specialist',
+        code: '#7f8c8d',
+        room: 30,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Periodonotology',
+        code: '#1abc9c',
+        room: 32,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Presthodontics',
+        code: '#2ecc71',
+        room: 33,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Orthodonotics',
+        code: '#3498db',
+        room: 34,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Oral Surgery',
+        code: '#9b59b6',
+        room: 35,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Opertaor Dentisty',
+        code: '#34495e',
+        room: 36,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Oral Pathology',
+        code: '#16a085',
+        room: 37,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Oral Medicine',
+        code: '#27ae60',
+        room: 38,
+        uri: require('../../assets/dental.jpeg'),
+      },
+      {
+        name: 'Oral Morphology',
+        code: '#2980b9',
+        room: 39,
+        uri: require('../../assets/dental.jpeg'),
+      },
     ];
 
     return (
@@ -55,7 +197,7 @@ export default class Opd extends Component {
               <Button
                 transparent
                 onPress={() => navigate('Home', {name: 'Jane'})}>
-                <Icon name="arrow-back" style={styles.icon} />
+                <Icon name="arrow-back" style={styles.HeaderIcon} />
               </Button>
             </TouchableOpacity>
           </Left>
@@ -66,7 +208,7 @@ export default class Opd extends Component {
             <Icons
               onPress={() => navigate('OpdHelp', {name: 'Jane'})}
               style={styles.helpIcon}
-              name="live-help"
+              name="help"
               size={30}
             />
             {/* <Text>Help</Text> */}
@@ -84,7 +226,13 @@ export default class Opd extends Component {
               style={[
                 styles.itemContainer, //, {backgroundColor: item.code}
               ]}>
-              <Icons style={styles.icon} name="doctor" size={75} />
+              <DoctorIcon style={styles.icon} name="doctor" size={75} />
+              {/* <Image
+                source={require('../../assets/dental.jpeg')}
+                height={30}
+                width={30}
+              /> */}
+
               <Text style={styles.itemName}>{item.name}</Text>
               <Text style={styles.itemCode}>Room # {item.room}</Text>
             </View>
@@ -109,6 +257,14 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  HeaderIcon: {
+    color: '#000000',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    // flexDirection: 'row',
+    // marginBottom: 50,
+    fontSize: 24,
   },
   icon: {
     color: 'blue',
@@ -157,3 +313,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+export default Opd;
