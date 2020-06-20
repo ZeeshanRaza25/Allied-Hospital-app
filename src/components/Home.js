@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, ImageBackground} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  ImageBackground,
+  BackHandler,
+  Alert,
+} from 'react-native';
+import {Content, Button} from 'native-base';
+
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -17,130 +26,166 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 class Home extends Component {
+  // backAction = () => {
+  //   Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+  //     {
+  //       text: 'Cancel',
+  //       onPress: () => null,
+  //       style: 'cancel',
+  //     },
+  //     {text: 'YES', onPress: () => BackHandler.exitApp()},
+  //   ]);
+  //   return true;
+  // };
+
+  // componentWillUnmount() {
+  //   this.backHandler.remove();
+  // }
+
   componentDidMount() {
     // do stuff while splash screen is shown
     // After having done stuff (such as async tasks) hide the splash screen
     SplashScreen.hide();
+
+    // this.backHandler = BackHandler.addEventListener(
+    //   'hardwareBackPress',
+    //   this.backAction,
+    // );
   }
 
   render() {
     const {navigate} = this.props.navigation;
     return (
       <Container style={styles.container}>
-        <ImageBackground
-          // source={require('../../assets/backgroung.png')}
-          style={styles.backgroundImage}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.dscImage}
-              source={require('../../assets/allied1.jpeg')}
-            />
-          </View>
-          <View style={styles.searchBarView}>
-            {/* <Header searchBar rounded  style={styles.HeaderStyle} translucent> */}
-            <Header searchBar rounded translucent style={styles.HeaderStyle}>
-              <Item>
-                <Input placeholderTextColor="#23527C" placeholder="Search" />
-                <Icon name="search" style={styles.icon} />
-              </Item>
-            </Header>
-          </View>
-          <View style={styles.a}>
-            <View style={styles.cardview}>
-              <View style={styles.touchableOpacityLeft}>
-                <TouchableOpacity
-                  onPress={() => navigate('About', {name: 'Jane'})}>
-                  <AmbulanceIcon
-                    style={styles.IconStyle1}
-                    name="info"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> About </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.touchableOpacityRight}>
-                <TouchableOpacity
-                  onPress={() => navigate('Opd', {name: 'Jane'})}>
-                  <AmbulanceIcon
-                    style={styles.IconStyle1}
-                    name="doctor"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> OPD </Text>
-                </TouchableOpacity>
-              </View>
+        {/* <ImageBackground
+          source={require('../../assets/backgroung.png')}
+          style={styles.backgroundImage}> */}
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.dscImage}
+            source={require('../../assets/allied1.jpeg')}
+          />
+        </View>
+        <View style={styles.searchBarView}>
+          {/* <Header searchBar rounded  style={styles.HeaderStyle} translucent> */}
+          <Header searchBar rounded translucent style={styles.HeaderStyle}>
+            <Item>
+              <Input placeholderTextColor="#23527C" placeholder="Search" />
+              <Icon name="search" style={styles.icon} />
+            </Item>
+          </Header>
+        </View>
+        <View style={styles.a}>
+          <View style={styles.cardview}>
+            <View style={styles.touchableOpacityLeft}>
+              <TouchableOpacity
+                onPress={() => navigate('About', {name: 'Jane'})}>
+                <AmbulanceIcon
+                  style={styles.IconStyle1}
+                  name="info"
+                  size={40}
+                />
+                <Text style={styles.cardtext}> About </Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.cardview}>
-              <View style={styles.touchableOpacityLeft}>
-                <TouchableOpacity
-                  onPress={() => navigate('Emergency', {name: 'Jane'})}>
-                  <AmbulanceIcon
-                    style={styles.IconStyle1}
-                    name="ambulance"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> Emergency </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.touchableOpacityRight}>
-                <TouchableOpacity
-                  onPress={() => navigate('BloodHome', {name: 'Jane'})}>
-                  <AmbulanceIcon
-                    style={styles.IconStyle1}
-                    name="blood-drop"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> Blood Bank </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.cardview}>
-              <View style={styles.touchableOpacityLeft}>
-                <TouchableOpacity
-                  onPress={() => navigate('DoctorsDetails', {name: 'Jane'})}>
-                  <AmbulanceIcon
-                    style={styles.IconStyle1}
-                    name="doctor"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> Doctors </Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.touchableOpacityRight}>
-                <TouchableOpacity
-                  onPress={() => navigate('Login', {name: 'Jane'})}>
-                  <SimpleLineIcons
-                    style={styles.IconStyle1}
-                    name="login"
-                    size={40}
-                  />
-                  <Text style={styles.cardtext}> Login </Text>
-                </TouchableOpacity>
-              </View>
+            <View style={styles.touchableOpacityRight}>
+              <TouchableOpacity onPress={() => navigate('Opd', {name: 'Jane'})}>
+                <AmbulanceIcon
+                  style={styles.IconStyle1}
+                  name="doctor"
+                  size={40}
+                />
+                <Text style={styles.cardtext}> OPD </Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View>
-            <Footer>
-              <FooterTab style={styles.footerTab}>
-                <Icons
-                  onPress={() => navigate('Call', {name: 'Jane'})}
-                  style={styles.callIcon}
-                  name="call"
-                  size={35}
+          <View style={styles.cardview}>
+            <View style={styles.touchableOpacityLeft}>
+              <TouchableOpacity
+                onPress={() => navigate('Emergency', {name: 'Jane'})}>
+                <AmbulanceIcon
+                  style={styles.IconStyle1}
+                  name="ambulance"
+                  size={40}
                 />
-                <Image
-                  style={styles.footerImage2}
-                  source={require('../../assets/footer3.png')}
+                <Text style={styles.cardtext}> Emergency </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.touchableOpacityRight}>
+              <TouchableOpacity
+                onPress={() => navigate('BloodHome', {name: 'Jane'})}>
+                <AmbulanceIcon
+                  style={styles.IconStyle1}
+                  name="blood-drop"
+                  size={40}
                 />
-                <Image
-                  color="#2AA6B6"
-                  style={styles.footerImage3}
-                  source={require('../../assets/footer2.png')}
+                <Text style={styles.cardtext}> Blood Bank </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.cardview}>
+            <View style={styles.touchableOpacityLeft}>
+              <TouchableOpacity
+                onPress={() => navigate('DoctorsDetails', {name: 'Jane'})}>
+                <AmbulanceIcon
+                  style={styles.IconStyle1}
+                  name="doctor"
+                  size={40}
                 />
+                <Text style={styles.cardtext}> Doctors </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.touchableOpacityRight}>
+              <TouchableOpacity
+                onPress={() => navigate('Login', {name: 'Jane'})}>
+                <SimpleLineIcons
+                  style={styles.IconStyle1}
+                  name="login"
+                  size={40}
+                />
+                <Text style={styles.cardtext}> Login </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <View>
+          <Footer>
+            <FooterTab style={styles.footerTab}>
+              <Icons
+                onPress={() => navigate('Call', {name: 'Jane'})}
+                style={styles.callIcon}
+                name="call"
+                size={35}
+              />
+              <Image
+                style={styles.footerImage2}
+                source={require('../../assets/footer3.png')}
+              />
+              <Image
+                color="#2AA6B6"
+                style={styles.footerImage3}
+                source={require('../../assets/footer2.png')}
+              />
+            </FooterTab>
+          </Footer>
+          {/* <Footer>
+              <FooterTab>
+                <Button>
+                  <Icon name="call" />
+                </Button>
+                <Button>
+                  <Icon name="camera" />
+                </Button>
+                <Button active>
+                  <Icon active name="navigate" />
+                </Button>
+                <Button>
+                  <Icon name="person" />
+                </Button>
               </FooterTab>
-            </Footer>
-          </View>
-        </ImageBackground>
+            </Footer> */}
+        </View>
+        {/* </ImageBackground> */}
       </Container>
     );
   }
@@ -231,6 +276,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '50%',
     // backgroundColor: '#000000',
+    backgroundColor: 'transparent',
     marginBottom: '3%',
     borderWidth: 1,
     marginRight: '2%',
@@ -240,7 +286,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: 'solid',
     elevation: 1,
-    backgroundColor: 'transparent',
     alignItems: 'center',
   },
   IconStyle: {

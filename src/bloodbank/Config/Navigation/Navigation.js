@@ -52,6 +52,7 @@ const MyDrawerNavigator = createDrawerNavigator(
   },
   {
     contentComponent: props => (
+      // eslint-disable-next-line react-native/no-inline-styles
       <View style={{flex: 1}}>
         <View>
           <Profile {...props} />

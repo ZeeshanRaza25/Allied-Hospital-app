@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Linking, Platform} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
 import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
-import FaxIcon from 'react-native-vector-icons/FontAwesome';
+// import FaxIcon from 'react-native-vector-icons/FontAwesome';
 import {Header, Left, Body, Button, Icon, Title, View, Text} from 'native-base';
 
 export default class Call extends Component {
@@ -10,9 +10,9 @@ export default class Call extends Component {
     let phoneNumber = '';
 
     if (Platform.OS === 'android') {
-      phoneNumber = 'tel:${1234567890}';
+      phoneNumber = 'tel:${0419210082}';
     } else {
-      phoneNumber = 'telprompt:${1234567890}';
+      phoneNumber = 'telprompt:${0419210082}';
     }
 
     Linking.openURL(phoneNumber);
@@ -49,10 +49,10 @@ export default class Call extends Component {
             <Text style={styles.text}> 041-9210080</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.itemView}>
+        {/* <View style={styles.itemView}>
           <FaxIcon color="#2AA6B6" style={styles.icons} name="fax" size={30} />
           <Text style={styles.text}> 041-9210080</Text>
-        </View>
+        </View> */}
         <View style={styles.itemView}>
           <TouchableOpacity
             onPress={() => Linking.openURL('mailto:info@pmc.edu.pk')}

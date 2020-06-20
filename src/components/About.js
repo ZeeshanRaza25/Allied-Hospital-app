@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+  Platform,
+} from 'react-native';
 import {Header, Left, Body, Button, Icon, Title, Text, View} from 'native-base';
 import Icons from 'react-native-vector-icons/Fontisto';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import LocationIcon from 'react-native-vector-icons/Entypo';
 import Web from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class About extends Component {
+  makeCall = () => {
+    let phoneNumber = '';
+
+    if (Platform.OS === 'android') {
+      phoneNumber = 'tel:${0419210082}';
+    } else {
+      phoneNumber = 'telprompt:${0419210082}';
+    }
+
+    Linking.openURL(phoneNumber);
+  };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -68,35 +86,45 @@ export default class About extends Component {
           </View>
           <View style={styles.view1}>
             <Text style={styles.heading}>Contact</Text>
-            <View style={styles.contactView}>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={this.makeCall}>
               <Ionic style={styles.IconStyle} name="md-call" size={25} />
-              <Text style={styles.textStyle}> (041) 9210082</Text>
-            </View>
-            <View style={styles.contactView}>
+              <Text style={styles.textStyle}> 041 9210082</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={() => Linking.openURL('mailto:info@pmc.edu.pk')}>
               <Icons style={styles.IconStyle} name="email" size={25} />
               <Text style={styles.textStyle}>allied@gmail.com</Text>
-            </View>
-            <View style={styles.contactView}>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={() => Linking.openURL('https://www.ahf.gop.pk')}>
               <Web style={styles.IconStyle} name="web" size={25} />
               <Text style={styles.textStyle}>www.ahf.gop.pk</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.contactView}>
               <LocationIcon
                 style={styles.IconStyle}
                 name="location"
                 size={25}
               />
-              <Text style={styles.textStyle}>
-                Jail Road Faisalabad,{'\n'},Pakistan
-              </Text>
+              <Text style={styles.textStyle}>See location on Map</Text>
               {/* <Text> {'\n'} </Text> */}
               {/* <TouchableOpacity style={{width: null,height: null}} onPress={}> */}
               {/* <Text>{'\n'}see on Google map</Text> */}
             </View>
-            <View style={styles.contactView}>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={() =>
+                Linking.openURL(
+                  'https://www.facebook.com/Allied-Hospital-Faisalabad-205247986174969/up',
+                )
+              }>
               <Icons style={styles.IconStyle} name="facebook" size={25} />
-              <Text style={styles.textStyle1}>Join us on Fb</Text>
-            </View>
+              <Text style={styles.textStyle1}> {''}Join us on Fb</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </>

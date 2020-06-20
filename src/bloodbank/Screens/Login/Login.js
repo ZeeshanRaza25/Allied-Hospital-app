@@ -1,18 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Form,
-  Item,
-  Input,
-  Label,
-  Button,
-  Text,
-  View,
-  Card,
-} from 'native-base';
+import {Content, Form, Item, Input, Label, Text, View} from 'native-base';
 import {
   Image,
   TouchableOpacity,
@@ -51,14 +39,14 @@ export default class Login extends Component {
                   'http://pluspng.com/img-png/blood-donation-png-hd-blood-blood-drop-donation-hand-health-care-medical-transfusion-blood-512.png',
               }}
             />
-            <Text
+            {/* <Text
               style={{
                 color: '#e42c34',
                 alignSelf: 'center',
                 fontWeight: 'bold',
               }}>
               WelCome to Blood Bank
-            </Text>
+            </Text> */}
             <Content style={styles.content}>
               <Form>
                 <Item stackedLabel>
