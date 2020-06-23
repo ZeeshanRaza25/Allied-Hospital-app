@@ -3,16 +3,11 @@ import {
   View,
   Image,
   StyleSheet,
-  ImageBackground,
-  BackHandler,
-  Alert,
+  // ImageBackground,
+  // BackHandler,
+  // Alert,
 } from 'react-native';
-import {Content, Button} from 'native-base';
 
-import Icons from 'react-native-vector-icons/MaterialIcons';
-import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import SplashScreen from 'react-native-splash-screen';
 import {
   Header,
   Item,
@@ -22,7 +17,14 @@ import {
   Container,
   Footer,
   FooterTab,
+  // Content,
+  // Button,
 } from 'native-base';
+
+import Icons from 'react-native-vector-icons/MaterialIcons';
+import AmbulanceIcon from 'react-native-vector-icons/Fontisto';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import SplashScreen from 'react-native-splash-screen';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 class Home extends Component {
@@ -68,7 +70,7 @@ class Home extends Component {
         </View>
         <View style={styles.searchBarView}>
           {/* <Header searchBar rounded  style={styles.HeaderStyle} translucent> */}
-          <Header searchBar rounded translucent style={styles.HeaderStyle}>
+          <Header searchBar rounded style={styles.HeaderStyle}>
             <Item>
               <Input placeholderTextColor="#23527C" placeholder="Search" />
               <Icon name="search" style={styles.icon} />
@@ -162,6 +164,7 @@ class Home extends Component {
                 source={require('../../assets/footer3.png')}
               />
               <Image
+                onPress={() => navigate('HealthTips', {name: 'Jane'})}
                 color="#2AA6B6"
                 style={styles.footerImage3}
                 source={require('../../assets/footer2.png')}

@@ -22,7 +22,7 @@ export default class Login extends Component {
               //   height: '100%',
               //   justifyContent: 'center',
               //   alignContent: 'center',
-              // alignItems: 'center',
+              //   alignItems: 'center',
               backgroundColor: '#eceef3',
               marginHorizontal: '10%',
             }}>

@@ -6,16 +6,17 @@ import Opd from './src/components/Opd';
 import Emergency from './src/components/emergency';
 import About from './src/components/About';
 import DoctorsDetails from './src/components/doctorDetails';
-import Others from './src/components/others';
+// import Others from './src/components/others';
 import Call from './src/components/call';
 import Blood from './src/bloodbank/bloodindex';
 import OpdHelp from './src/components/OpdHelp';
 import BloodMain from './src/bloodbank/bloodindex';
 import Login from './src/bloodbank/Screens/Login/Login';
-import Signup from './src/bloodbank/Screens/Signup/Signup';
+// import Signup from './src/bloodbank/Screens/Signup/Signup';
 import BloodHome from './src/bloodbank/Screens/Home/Home';
 import PostDetail from './src/bloodbank/Screens/DetailPost/DetailPost';
 import SignUp from './src/components/SignUp';
+import Tips from './src/components/Tips';
 
 const AfterSignin = createStackNavigator({
   Blood: {screen: Blood, navigationOptions: {headerShown: false}},
@@ -32,6 +33,7 @@ const AfterSignin = createStackNavigator({
 
 const BeforeSignin = createStackNavigator({
   Home: {screen: Home, navigationOptions: {headerShown: false}},
+  Tips: {screen: Tips, navigationOptions: {headerShown: false}},
   Icu: {screen: Icu, navigationOptions: {headerShown: false}},
   Opd: {screen: Opd, navigationOptions: {headerShown: false}},
   Emergency: {screen: Emergency, navigationOptions: {headerShown: false}},

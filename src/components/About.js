@@ -11,7 +11,49 @@ import Icons from 'react-native-vector-icons/Fontisto';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import LocationIcon from 'react-native-vector-icons/Entypo';
 import Web from 'react-native-vector-icons/MaterialCommunityIcons';
+// const GOOGLE_MAPS_APIKEY = 'AIzaSyCYvMpmVhFc0ydILEuXGJNYNGFnBoKPCL8';
+import getDirections from 'react-native-google-maps-directions';
+
 export default class About extends Component {
+  handleGetDirections = () => {
+    const data = {
+      source: {
+        latitude: 31.4490534,
+        longitude: 73.0809091,
+      },
+      destination: {
+        latitude: 31.4490535,
+        longitude: 73.0809092,
+      },
+      params: [
+        {
+          key: 'travelmode',
+          value: 'driving', // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: 'dir_action',
+          value: 'navigate', // this instantly initializes navigation using the given travel mode
+        },
+      ],
+      // waypoints: [
+      //   {
+      //     latitude: 31.8600025,
+      //     longitude: 73.697452,
+      //   },
+      //   {
+      //     latitude: -33.8600026,
+      //     longitude: 18.697453,
+      //   },
+      //   {
+      //     latitude: -33.8600036,
+      //     longitude: 18.697493,
+      //   },
+      // ],
+    };
+
+    getDirections(data);
+  };
+
   makeCall = () => {
     let phoneNumber = '';
 
@@ -104,7 +146,9 @@ export default class About extends Component {
               <Web style={styles.IconStyle} name="web" size={25} />
               <Text style={styles.textStyle}>www.ahf.gop.pk</Text>
             </TouchableOpacity>
-            <View style={styles.contactView}>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={this.handleGetDirections}>
               <LocationIcon
                 style={styles.IconStyle}
                 name="location"
@@ -114,7 +158,7 @@ export default class About extends Component {
               {/* <Text> {'\n'} </Text> */}
               {/* <TouchableOpacity style={{width: null,height: null}} onPress={}> */}
               {/* <Text>{'\n'}see on Google map</Text> */}
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.contactView}
               onPress={() =>
