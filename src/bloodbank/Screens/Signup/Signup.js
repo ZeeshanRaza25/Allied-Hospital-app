@@ -19,8 +19,28 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+ 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 export default class StackedLabelExample extends Component {
+  state={
+    fullName:"",
+    email:"",
+    password:"",
+    bloodGroup:""
+  }
+
+   onChange = (e)=>{
+    const {value , name } = e.target
+    console.log(value , name)
+    this.setState({
+      [name]:value
+    })
+  }
+  
+  onSubmitForm =(e)=>{
+    console.log(this.state)
+  }
+
   render() {
     return (
       <>
@@ -43,8 +63,8 @@ export default class StackedLabelExample extends Component {
                     'http://pluspng.com/img-png/blood-donation-png-hd-blood-blood-drop-donation-hand-health-care-medical-transfusion-blood-512.png',
                 }}
               />
-              <Text style={{color: '#e42c34', fontWeight: 'bold'}}>
-                WelCome to Blood Bank
+              <Text  style={{color: '#e42c34', fontWeight: 'bold'}}>
+                WelCome to Blood Bank 
               </Text>
               <Content>
                 <Form>
@@ -52,7 +72,7 @@ export default class StackedLabelExample extends Component {
                     <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
                       Full Name
                     </Label>
-                    <Input placeholder="H****** R**" />
+                    <Input onValueChange={this.onChange} name="fullName" placeholder="H****** R**" />
                   </Item>
                   <Item stackedLabel>
                     <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
@@ -61,6 +81,7 @@ export default class StackedLabelExample extends Component {
                     <Input
                       keyboardType="numeric"
                       type="number"
+                      onValueChange={this.onChange} name="phoneNumber"
                       placeholder="03** *******"
                     />
                   </Item>
@@ -72,7 +93,7 @@ export default class StackedLabelExample extends Component {
                       selectedValue="Hishmat"
                       style={{height: 50, width: '100%'}}
                       onValueChange={(itemValue, itemIndex) =>
-                        this.setState({language: itemValue})
+                        this.setState({bloodGroup: itemValue})
                       }>
                       <Picker.Item
                         label="A + (Positive)"
@@ -115,6 +136,9 @@ export default class StackedLabelExample extends Component {
                     <Input
                       autoCapitalize="none"
                       autoCorrect={false}
+                      name="email"
+                      onValueChange={this.onChange} name="email"
+                
                       placeholder="xyz@gmail.com"
                     />
                   </Item>
@@ -122,7 +146,8 @@ export default class StackedLabelExample extends Component {
                     <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
                       Password
                     </Label>
-                    <Input secureTextEntry={true} placeholder="**********" />
+                     
+                    <Input  onValueChange={this.onChange} name="password" secureTextEntry={true} placeholder="**********" />
                   </Item>
                   <Text />
                   <View style={{textAlign: 'center'}}>
@@ -135,7 +160,7 @@ export default class StackedLabelExample extends Component {
                         color: '#FF00FF',
                         padding: 10,
                       }}
-                      onPress={() => alert('Signup')}>
+                      onPress={() => this.onSubmitForm('Signup')}>
                       <Text style={{fontWeight: 'bold'}}> Sign up </Text>
                     </TouchableOpacity>
                     <Text />

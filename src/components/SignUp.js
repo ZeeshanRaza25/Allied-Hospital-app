@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
+
 import {
   Container,
   Header,
@@ -19,11 +20,45 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import {signUp} from '../store/middleWires/registeraction';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-export default class SignUp extends Component {
+import {connect} from 'react-redux';
+import Loading from "./loading"
+class SignUpComponent extends Component {
+  state = {
+    fullName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    bloodGroup: '',
+    loading:false
+  };
+
+  onChange = (e, name) => {
+    console.log(e, name);
+    this.setState({
+      [name]: e,
+    });
+  };
+
+  onSubmitForm = e => {
+    this.setState({loading:true})
+    this.props.signupFunc({...this.state} , this.afterloading);
+    
+  };
+
+  afterloading =()=>{
+    this.setState({loading:false})
+  }
+  onValueChange2(value) {
+    this.setState({
+      bloodGroup: value
+    });
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Loading spinner={this.state.loading} />
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
@@ -65,7 +100,12 @@ export default class SignUp extends Component {
                   <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
                     Full Name
                   </Label>
-                  <Input placeholder="H****** R**" />
+                  <Input
+                    onChangeText={e => this.onChange(e, 'fullName')}
+                    name="fullName"
+                    value={this.state.fullName}
+                    placeholder="H****** R**"
+                  />
                 </Item>
                 <Item stackedLabel>
                   <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
@@ -74,6 +114,9 @@ export default class SignUp extends Component {
                   <Input
                     keyboardType="numeric"
                     type="number"
+                    onChangeText={e => this.onChange(e, 'phoneNumber')}
+                    name="phoneNumber"
+                    value={this.state.phoneNumber}
                     placeholder="03** *******"
                   />
                 </Item>
@@ -82,11 +125,10 @@ export default class SignUp extends Component {
                     Select Blood Group
                   </Label>
                   <Picker
-                    selectedValue="Hishmat"
+                    selectedValue={this.state.bloodGroup}
                     style={{height: 50, width: '100%'}}
-                    onValueChange={(itemValue, itemIndex) =>
-                      this.setState({language: itemValue})
-                    }>
+                    onValueChange={this.onValueChange2.bind(this)}
+                    >
                     <Picker.Item
                       label="A + (Positive)"
                       value="A + (Positive)"
@@ -128,6 +170,9 @@ export default class SignUp extends Component {
                   <Input
                     autoCapitalize="none"
                     autoCorrect={false}
+                    onChangeText={e => this.onChange(e, 'email')}
+                    name="email"
+                    value={this.state.email}
                     placeholder="xyz@gmail.com"
                   />
                 </Item>
@@ -135,7 +180,13 @@ export default class SignUp extends Component {
                   <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
                     Password
                   </Label>
-                  <Input secureTextEntry={true} placeholder="**********" />
+                  <Input
+                    onChangeText={e => this.onChange(e, 'password')}
+                    name="password"
+                    value={this.state.password}
+                    secureTextEntry={true}
+                    placeholder="**********"
+                  />
                 </Item>
                 <Text />
                 <View style={{textAlign: 'center'}}>
@@ -148,7 +199,7 @@ export default class SignUp extends Component {
                       color: '#FF00FF',
                       padding: 10,
                     }}
-                    onPress={() => alert('Signup')}>
+                    onPress={() => this.onSubmitForm('Signup')}>
                     <Text style={{fontWeight: 'bold'}}> Sign up </Text>
                   </TouchableOpacity>
                   <Text />
@@ -183,6 +234,18 @@ export default class SignUp extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    signupFunc: (data , cb) => dispatch(signUp(data , cb)),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignUpComponent);
 
 const styles = StyleSheet.create({
   scrollView: {

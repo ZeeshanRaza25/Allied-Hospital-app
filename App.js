@@ -16,7 +16,14 @@ import Signup from './src/bloodbank/Screens/Signup/Signup';
 import BloodHome from './src/bloodbank/Screens/Home/Home';
 import PostDetail from './src/bloodbank/Screens/DetailPost/DetailPost';
 import SignUp from './src/components/SignUp';
+import {Provider} from 'react-redux';
+import {Container} from 'native-base';
+import React from 'react';
+import Store from './src/store/store';
+import {connect} from 'react-redux';
+import AsyncStorage from "@react-native-community/async-storage";
 
+import {autoSignIn} from './src/store/middleWires/registeraction';
 const AfterSignin = createStackNavigator({
   Blood: {screen: Blood, navigationOptions: {headerShown: false}},
   BloodMain: {screen: BloodMain, navigationOptions: {headerShown: false}},
@@ -61,6 +68,35 @@ const AppNavigator = createStackNavigator(
   },
 );
 
-const MyApp = createAppContainer(AppNavigator);
+const App = createAppContainer(AppNavigator);
+
+class MyApp extends React.Component {
+  retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('jwtToken');
+      if (value) {
+        console.log(value)
+        // setAuthToken(value);
+        // const decoded = jwtDecode(value);
+        Store.dispatch(autoSignIn(value));
+      }
+    } catch (e) {
+      console.log('error in reading value');
+    }
+  };
+  async componentDidMount() {
+    await this.retrieveData();
+  }
+
+  render() {
+    return (
+      <Provider store={Store}>
+        <Container>
+          <App />
+        </Container>
+      </Provider>
+    );
+  }
+}
 
 export default MyApp;

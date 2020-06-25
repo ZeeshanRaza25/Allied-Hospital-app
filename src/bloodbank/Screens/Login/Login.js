@@ -9,10 +9,37 @@ import {
   StyleSheet,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-export default class Login extends Component {
+import Loading from '../../../components/loading';
+import {signIn} from '../../../store/middleWires/registeraction';
+import { connect } from 'react-redux'
+
+class Login extends Component {
+  state = {
+    email: '',
+    password: '',
+    loading: false,
+  };
+
+  onChange = (e, name) => {
+    this.setState({
+      [name]: e,
+    });
+  };
+
+  onSumbit = e => {
+    this.setState({loading: true});
+    this.props.signinFunc({...this.state}, this.afterCall);
+  };
+  afterCall = (success) => {
+    this.setState({loading: false});
+    // if(success){
+    //   () => this.props.navigation.navigate('Home')()
+    // }
+  };
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <Loading spinner={this.state.loading} />
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
@@ -55,8 +82,11 @@ export default class Login extends Component {
                     User email
                   </Label>
                   <Input
+                    name="email"
+                    onChangeText={e => this.onChange(e, 'email')}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    value={this.state.email}
                     placeholder="xyz@gmail.com"
                   />
                 </Item>
@@ -64,7 +94,13 @@ export default class Login extends Component {
                   <Label style={{color: '#e42c34', fontWeight: 'bold'}}>
                     Password
                   </Label>
-                  <Input secureTextEntry={true} placeholder="************" />
+                  <Input
+                    value={this.state.password}
+                    onChangeText={e => this.onChange(e, 'password')}
+                    name="password"
+                    secureTextEntry={true}
+                    placeholder="************"
+                  />
                 </Item>
                 <Text />
                 <View style={{textAlign: 'center'}}>
@@ -77,7 +113,7 @@ export default class Login extends Component {
                       color: 'black',
                       padding: 10,
                     }}
-                    onPress={() => this.props.navigation.navigate('Home')}>
+                    onPress={this.onSumbit}>
                     <Text style={{fontWeight: 'bold'}}> Login </Text>
                   </TouchableOpacity>
                   <Text />
@@ -114,6 +150,18 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    signinFunc: (data, cb) => dispatch(signIn(data, cb)),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Login);
 
 const styles = StyleSheet.create({
   scrollView: {
