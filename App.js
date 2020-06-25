@@ -6,13 +6,13 @@ import Opd from './src/components/Opd';
 import Emergency from './src/components/emergency';
 import About from './src/components/About';
 import DoctorsDetails from './src/components/doctorDetails';
-import Others from './src/components/others';
+// import Others from './src/components/others';
 import Call from './src/components/call';
 import Blood from './src/bloodbank/bloodindex';
 import OpdHelp from './src/components/OpdHelp';
 import BloodMain from './src/bloodbank/bloodindex';
 import Login from './src/bloodbank/Screens/Login/Login';
-import Signup from './src/bloodbank/Screens/Signup/Signup';
+// import Signup from './src/bloodbank/Screens/Signup/Signup';
 import BloodHome from './src/bloodbank/Screens/Home/Home';
 import PostDetail from './src/bloodbank/Screens/DetailPost/DetailPost';
 import SignUp from './src/components/SignUp';
@@ -22,6 +22,7 @@ import React from 'react';
 import Store from './src/store/store';
 import {connect} from 'react-redux';
 import AsyncStorage from "@react-native-community/async-storage";
+import Tips from './src/components/Tips';
 
 import {autoSignIn} from './src/store/middleWires/registeraction';
 const AfterSignin = createStackNavigator({
@@ -39,6 +40,7 @@ const AfterSignin = createStackNavigator({
 
 const BeforeSignin = createStackNavigator({
   Home: {screen: Home, navigationOptions: {headerShown: false}},
+  Tips: {screen: Tips, navigationOptions: {headerShown: false}},
   Icu: {screen: Icu, navigationOptions: {headerShown: false}},
   Opd: {screen: Opd, navigationOptions: {headerShown: false}},
   Emergency: {screen: Emergency, navigationOptions: {headerShown: false}},

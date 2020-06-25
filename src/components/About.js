@@ -1,3 +1,5 @@
+/* eslint-disable consistent-this */
+/* eslint-disable no-alert */
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -5,13 +7,127 @@ import {
   TouchableOpacity,
   Linking,
   Platform,
+  PermissionsAndroid,
 } from 'react-native';
 import {Header, Left, Body, Button, Icon, Title, Text, View} from 'native-base';
 import Icons from 'react-native-vector-icons/Fontisto';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import LocationIcon from 'react-native-vector-icons/Entypo';
 import Web from 'react-native-vector-icons/MaterialCommunityIcons';
+// const GOOGLE_MAPS_APIKEY = 'AIzaSyCYvMpmVhFc0ydILEuXGJNYNGFnBoKPCL8';
+import getDirections from 'react-native-google-maps-directions';
+import Geolocation from '@react-native-community/geolocation';
+
 export default class About extends Component {
+  state = {
+    currentLongitude: 'unknown', //Initial Longitude
+    currentLatitude: 'unknown', //Initial Latitude
+  };
+  componentDidMount = () => {
+    var that = this;
+    //Checking for the permission just after component loaded
+    if (Platform.OS === 'ios') {
+      this.callLocation(that);
+    } else {
+      async function requestLocationPermission() {
+        try {
+          const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            {
+              title: 'Location Access Required',
+              message: 'This App needs to Access your location',
+            },
+          );
+          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            //To Check, If Permission is granted
+            that.callLocation(that);
+          } else {
+            alert('Permission Denied');
+          }
+        } catch (err) {
+          alert('err', err);
+          console.warn(err);
+        }
+      }
+      requestLocationPermission();
+    }
+  };
+
+  callLocation(that) {
+    //alert("callLocation Called");
+    Geolocation.getCurrentPosition(
+      //Will give you the current location
+      position => {
+        const currentLongitude = JSON.stringify(position.coords.longitude);
+        //getting the Longitude from the location json
+        const currentLatitude = JSON.stringify(position.coords.latitude);
+        //getting the Latitude from the location json
+        that.setState({currentLongitude: currentLongitude});
+        //Setting state Longitude to re re-render the Longitude Text
+        that.setState({currentLatitude: currentLatitude});
+        //Setting state Latitude to re re-render the Longitude Text
+      },
+      error => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+    that.watchID = Geolocation.watchPosition(position => {
+      //Will give you the location on location change
+      console.log(position);
+      const currentLongitude = JSON.stringify(position.coords.longitude);
+      //getting the Longitude from the location json
+      const currentLatitude = JSON.stringify(position.coords.latitude);
+      //getting the Latitude from the location json
+      that.setState({currentLongitude: currentLongitude});
+      //Setting state Longitude to re re-render the Longitude Text
+      that.setState({currentLatitude: currentLatitude});
+      //Setting state Latitude to re re-render the Longitude Text
+    });
+  }
+  componentWillUnmount = () => {
+    Geolocation.clearWatch(this.watchID);
+  };
+
+  handleGetDirections = () => {
+    this.callLocation(this);
+
+    const data = {
+      source: {
+        latitude: this.state.currentLongitude,
+        longitude: this.state.currentLatitude,
+      },
+      destination: {
+        latitude: 31.4490535,
+        longitude: 73.0809092,
+      },
+      params: [
+        {
+          key: 'travelmode',
+          value: 'driving', // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: 'dir_action',
+          value: 'navigate', // this instantly initializes navigation using the given travel mode
+        },
+      ],
+      // waypoints: [
+      //   {
+      //     latitude: 31.8600025,
+      //     longitude: 73.697452,
+      //   },
+      //   {
+      //     latitude: -33.8600026,
+      //     longitude: 18.697453,
+      //   },
+      //   {
+      //     latitude: -33.8600036,
+      //     longitude: 18.697493,
+      //   },
+      // ],
+    };
+
+    getDirections(data);
+  };
+
   makeCall = () => {
     let phoneNumber = '';
 
@@ -104,7 +220,9 @@ export default class About extends Component {
               <Web style={styles.IconStyle} name="web" size={25} />
               <Text style={styles.textStyle}>www.ahf.gop.pk</Text>
             </TouchableOpacity>
-            <View style={styles.contactView}>
+            <TouchableOpacity
+              style={styles.contactView}
+              onPress={this.handleGetDirections}>
               <LocationIcon
                 style={styles.IconStyle}
                 name="location"
@@ -114,7 +232,7 @@ export default class About extends Component {
               {/* <Text> {'\n'} </Text> */}
               {/* <TouchableOpacity style={{width: null,height: null}} onPress={}> */}
               {/* <Text>{'\n'}see on Google map</Text> */}
-            </View>
+            </TouchableOpacity>
             <TouchableOpacity
               style={styles.contactView}
               onPress={() =>

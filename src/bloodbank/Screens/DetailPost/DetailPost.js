@@ -35,7 +35,7 @@ export default class Detail extends Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View>
-            <TopHeader navigation= {this.props.navigation} />
+            <TopHeader navigation={this.props.navigation} />
             <Text>Detail post</Text>
           </View>
         </ScrollView>

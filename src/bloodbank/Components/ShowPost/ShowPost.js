@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {
@@ -21,18 +22,15 @@ import {
   Accordion,
 } from 'native-base';
 export default class Showpost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tableTitle: ['Name', 'Mobil', 'Email', 'Address'],
-      tableData: [
-        ['Zeeshan Raza'],
-        ['03001234567'],
-        ['zeeshanraza@gmail.com'],
-        ['Faisalabad'],
-      ],
-    };
-  }
+  state = {
+    tableTitle: ['Name', 'Mobile', 'Email', 'Address'],
+    tableData: [
+      ['Zeeshan Raza'],
+      ['03247411470'],
+      ['zeeshanraza@gmail.com'],
+      ['Faisalabad'],
+    ],
+  };
   render() {
     const state = this.state;
     console.log('huhuuuyuyu', this.props.navigation);
@@ -97,7 +95,7 @@ export default class Showpost extends Component {
               </Table>
             </View>
 
-            <CardItem>
+            {/* <CardItem>
               <Button transparent textStyle={{color: '#87838B'}}>
                 <TouchableOpacity>
                   <Icon style={{color: '#808080'}} active name="thumbs-up" />
@@ -114,7 +112,7 @@ export default class Showpost extends Component {
               <Button transparent textStyle={{color: '#87838B'}}>
                 <Text note>April 15, 2016</Text>
               </Button>
-            </CardItem>
+            </CardItem> */}
           </Card>
         </Content>
       </View>
@@ -125,7 +123,7 @@ export default class Showpost extends Component {
 const styles = StyleSheet.create({
   head: {height: 40, backgroundColor: '#f1f8ff'},
   wrapper: {flexDirection: 'row'},
-  title: {flex: 1, backgroundColor: '#f6f8fa'},
+  title: {flex: 1, backgroundColor: '#f6f8fa', paddingLeft: '4%'},
   row: {height: 28},
-  // text: { textAlign: 'center' }
+  text: {textAlign: 'left'},
 });

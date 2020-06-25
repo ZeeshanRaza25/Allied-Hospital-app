@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 // import { Container, Header, Content, Form, Item, Input, Label, Text ,Left,Button,Icon,Body,Title,Right
 //  } from 'native-base';
@@ -6,7 +7,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import ImageSlider from './../../Components/ImageSlider/ImageSlider';
 import ShowPost from './../../Components/ShowPost/ShowPost';
 import TopHeader from './../../Components/Header/Header';
-import Profile from './../../Components/MyProfile/Myprofile';
+// import Profile from './../../Components/MyProfile/Myprofile';
 export default class BloodHome extends Component {
   render() {
     return (
