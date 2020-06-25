@@ -1,1 +1,1 @@
-export const baseUrl = "http://192.168.43.26:3000/"
+export const baseUrl = "https://myserveralliadapp.herokuapp.com/"
